@@ -40,7 +40,7 @@ export class AppComponent {
     const secondHalf = (Math.cos(Math.PI * this.degToRadians(fov) / this.degToRadians(720))) * (1 - (Math.cos(Math.PI * this.degToRadians(fov) / this.degToRadians(360))) + (Math.sin((Math.PI * this.degToRadians(fov))  / this.degToRadians(360))))
 
     const sensInInches = firstHalf / secondHalf
-    this.sens = parseFloat((sensInInches * 2.54).toFixed(5));
+    this.sens = parseFloat((sensInInches).toFixed(4));
 
     localStorage.setItem("sens", this.sens?.toString())
     localStorage.setItem("dpi", dpi)
@@ -56,5 +56,9 @@ export class AppComponent {
 
   degToRadians(degrees: number): number {
     return degrees * (Math.PI / 180)
+  }
+
+  roundNum(num: Number) {
+    return parseFloat((num).toFixed(4))
   }
 }
