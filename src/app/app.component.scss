@@ -1,0 +1,90 @@
+* {
+  font-family: Roboto, sans-serif;
+  color: whitesmoke;
+  font-size: 16px;
+  font-size: inherit;
+}
+
+input {
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+button {
+  border: 0;
+  padding: 0;
+}
+
+/////////////////// Resets above ///////////////////
+
+.cyan-color {
+  color: #00e6d7;
+}
+
+main {
+  top: 0;
+  left: 0;
+
+  background-color: #121212;
+
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 80px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 38px;
+  margin-top: 100px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input {
+  text-align: right;
+}
+
+.input-box {
+  border-bottom: 3px solid #303030;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 300px;
+  height: 45px;
+}
+
+.label {
+  font-weight: 500;
+  color: gray;
+}
+
+.sens {
+  cursor: pointer;
+}
