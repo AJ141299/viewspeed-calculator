@@ -60,6 +60,14 @@ main {
   margin-top: 100px;
 }
 
+@media only screen and (max-width: 500px) {
+  .title {
+    font-size: 30px;
+    text-align: center;
+    overflow-wrap: break-word;
+  }
+}
+
 .inputs {
   display: flex;
   flex-direction: column;
