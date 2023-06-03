@@ -10,14 +10,17 @@ export class AppComponent {
   dpiControl = new FormControl();
   screenWidthControl = new FormControl();
   fieldOfViewControl = new FormControl();
-  sens: number | undefined;
+  sensInInch: number | undefined;
+  sensInCm: number | undefined;
 
   ngOnInit() {
-    this.dpiControl.setValue(localStorage.getItem("dpi"))
-    this.screenWidthControl.setValue(localStorage.getItem("screenWidth"))
-    this.fieldOfViewControl.setValue(localStorage.getItem("fov"))
-    const sens = localStorage.getItem("sens")
-    this.sens = sens ? Number(sens) : undefined
+    this.dpiControl.setValue(localStorage.getItem('dpi'));
+    this.screenWidthControl.setValue(localStorage.getItem('screenWidth'));
+    this.fieldOfViewControl.setValue(localStorage.getItem('fov'));
+    const sensInInch = localStorage.getItem('sensInInch');
+    const sensInCm = localStorage.getItem('sensInCm');
+    this.sensInInch = sensInInch ? Number(sensInInch) : undefined;
+    this.sensInCm = sensInCm ? Number(sensInCm) : undefined;
   }
 
   calculate() {
@@ -26,7 +29,8 @@ export class AppComponent {
       !this.screenWidthControl.value ||
       !this.fieldOfViewControl.value
     ) {
-      this.sens = undefined;
+      this.sensInInch = undefined;
+      this.sensInCm = undefined;
       return;
     }
 
@@ -36,29 +40,35 @@ export class AppComponent {
 
     const d = screenWidth / dpi;
 
-    const firstHalf = (d * Math.PI)
-    const secondHalf = (Math.cos(Math.PI * this.degToRadians(fov) / this.degToRadians(720))) * (1 - (Math.cos(Math.PI * this.degToRadians(fov) / this.degToRadians(360))) + (Math.sin((Math.PI * this.degToRadians(fov))  / this.degToRadians(360))))
+    const firstHalf = d * Math.PI;
+    const secondHalf =
+      Math.cos((Math.PI * this.degToRadians(fov)) / this.degToRadians(720)) *
+      (1 -
+        Math.cos((Math.PI * this.degToRadians(fov)) / this.degToRadians(360)) +
+        Math.sin((Math.PI * this.degToRadians(fov)) / this.degToRadians(360)));
 
-    const sensInInches = firstHalf / secondHalf
-    this.sens = parseFloat((sensInInches).toFixed(4));
+    const sensInInches = firstHalf / secondHalf;
+    this.sensInInch = this.roundNum(sensInInches);
+    this.sensInCm = this.roundNum(sensInInches * 2.54);
 
-    localStorage.setItem("sens", this.sens?.toString())
-    localStorage.setItem("dpi", dpi)
-    localStorage.setItem("fov", fov)
-    localStorage.setItem("screenWidth", screenWidth)
+    localStorage.setItem('sensInInch', this.sensInInch?.toString());
+    localStorage.setItem('sensInCm', this.sensInCm?.toString());
+    localStorage.setItem('dpi', dpi);
+    localStorage.setItem('fov', fov);
+    localStorage.setItem('screenWidth', screenWidth);
   }
 
-  copy() {
-    if (this.sens) {
-      navigator.clipboard.writeText(`${this.sens}`);
+  copy(sens: number | undefined) {
+    if (sens) {
+      navigator.clipboard.writeText(sens.toString());
     }
   }
 
   degToRadians(degrees: number): number {
-    return degrees * (Math.PI / 180)
+    return degrees * (Math.PI / 180);
   }
 
   roundNum(num: Number) {
-    return parseFloat((num).toFixed(4))
+    return parseFloat(num.toFixed(4));
   }
 }

@@ -1,29 +1,47 @@
 <main>
-  <p class="title"><span class="cyan-color">Viewspeed</span> Sensitivity Calculator</p>
+  <p class="title">
+    <span class="cyan-color">Viewspeed</span> Sensitivity Calculator
+  </p>
   <div class="inputs">
     <div class="input-box">
       <p class="label">Mouse DPI</p>
-      <input (keyup)="calculate()" type="number" [formControl]="dpiControl">
+      <input (keyup)="calculate()" type="number" [formControl]="dpiControl" />
     </div>
 
     <div class="input-box">
       <p class="label">Screen width</p>
-      <input (keyup)="calculate()" type="number" [formControl]="screenWidthControl">
+      <input
+        (keyup)="calculate()"
+        type="number"
+        [formControl]="screenWidthControl"
+      />
     </div>
 
     <div class="input-box">
       <p class="label">Field of view</p>
-      <input (keyup)="calculate()" type="number" [formControl]="fieldOfViewControl">
+      <input
+        (keyup)="calculate()"
+        type="number"
+        [formControl]="fieldOfViewControl"
+      />
     </div>
 
-    <div (click)="copy()" class="input-box sens">
+    <div
+      [ngClass]="sensInInch ? 'cursor-pointer' : ''"
+      (click)="copy(sensInInch)"
+      class="input-box"
+    >
       <p class="label">360° distance</p>
-      <p class="sens-1">{{sens ? sens + ' inch' : null}}</p>
+      <p class="plum-color">{{ sensInInch ? sensInInch + " inch" : null }}</p>
     </div>
 
-    <div (click)="copy()" class="input-box sens">
+    <div
+      [ngClass]="sensInInch ? 'cursor-pointer' : ''"
+      (click)="copy(sensInCm)"
+      class="input-box"
+    >
       <p class="label">360° distance</p>
-      <p class="sens-2">{{sens ? roundNum(sens * 2.54) + ' cm' : null}}</p>
+      <p class="cyan-color">{{ sensInCm ? sensInCm + " cm" : null }}</p>
     </div>
   </div>
 </main>
