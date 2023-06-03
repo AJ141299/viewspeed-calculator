@@ -26,7 +26,7 @@ export class AppComponent {
       !this.screenWidthControl.value ||
       !this.fieldOfViewControl.value
     ) {
-      console.log('Please enter values');
+      this.sens = undefined;
       return;
     }
 
