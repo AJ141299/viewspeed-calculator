@@ -4,44 +4,35 @@
   </p>
   <div class="inputs">
     <div class="input-box">
-      <p class="label">Mouse DPI</p>
-      <input (keyup)="calculate()" type="number" [formControl]="dpiControl" />
+      <p class="label">Base Sens</p>
+      <input (keyup)="calculate()" type="number" [formControl]="baseSensControl" />
     </div>
 
     <div class="input-box">
-      <p class="label">HResolution</p>
+      <p class="label">Base FOV</p>
       <input
         (keyup)="calculate()"
         type="number"
-        [formControl]="screenWidthControl"
+        [formControl]="baseFovControl"
       />
     </div>
 
     <div class="input-box">
-      <p class="label">Actual HFOV</p>
+      <p class="label">New FOV</p>
       <input
         (keyup)="calculate()"
         type="number"
-        [formControl]="fieldOfViewControl"
+        [formControl]="newFovControl"
       />
     </div>
 
     <div
-      [ngClass]="sensInInch ? 'cursor-pointer' : ''"
-      (click)="copy(sensInInch)"
+      [ngClass]="newSens ? 'cursor-pointer' : ''"
+      (click)="copy(newSens)"
       class="input-box"
     >
-      <p class="label">360° distance</p>
-      <p class="plum-color">{{ sensInInch ? sensInInch + " inch" : null }}</p>
-    </div>
-
-    <div
-      [ngClass]="sensInInch ? 'cursor-pointer' : ''"
-      (click)="copy(sensInCm)"
-      class="input-box"
-    >
-      <p class="label">360° distance</p>
-      <p class="cyan-color">{{ sensInCm ? sensInCm + " cm" : null }}</p>
+      <p class="label">New Sens</p>
+      <p class="plum-color">{{ newSens }}</p>
     </div>
   </div>
 </main>
